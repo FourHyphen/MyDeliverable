@@ -16,18 +16,27 @@ namespace MyUtility
 
         public void Execute(T commandInstance, string methodName, object[] args = null)
         {
-            Type[] overload = new Type[args == null ? 0 : args.Length];
-            if (args != null)
-            {
-                for (int i = 0; i < args.Length; i++)
-                {
-                    var tmp = args[i];
-                    overload[i] = tmp.GetType();
-                }
-            }
+            Type[] overload = GetOverloadArgs(args);
             System.Reflection.MethodInfo method = commandInstance.GetType().GetMethod(methodName, overload);
             method.Invoke(commandInstance, args);
             AddHistory(commandInstance);
+        }
+
+        private Type[] GetOverloadArgs(object[] args)
+        {
+            if (args == null)
+            {
+                return new Type[0];
+            }
+
+            Type[] overload = new Type[args.Length];
+            for (int i = 0; i < args.Length; i++)
+            {
+                var tmp = args[i];
+                overload[i] = tmp.GetType();
+            }
+
+            return overload;
         }
 
         private void AddHistory(T commandInstance)
