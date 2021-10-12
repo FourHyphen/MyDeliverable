@@ -57,5 +57,36 @@ namespace TestMyDeliverable
             now = (string)ch.Redo(1);
             Assert.IsTrue(now == "three");
         }
+
+        [TestMethod]
+        public void ReflectionDoStaticMethod()
+        {
+            string ins1 = "ins1";
+            string ins2 = "Ins1";
+
+            // オーバーロードメソッド特定テストのため引数違いをテストする
+            // 大文字小文字の差を無視した値の比較 -> true を期待
+            object res = MyUtility.Reflection.DoStaticMethod("System.String", "Equals", new object[] { ins1, ins2, StringComparison.OrdinalIgnoreCase });
+            Assert.IsTrue(res is bool);
+            Assert.IsTrue((bool)res);
+
+            // 大文字小文字の差を無視しない値の比較 -> false を期待
+            res = MyUtility.Reflection.DoStaticMethod("System.String", "Equals", new object[] { ins1, ins2 });
+            Assert.IsTrue(res is bool);
+            Assert.IsFalse((bool)res);
+        }
+
+        [TestMethod]
+        public void ReflectionDoMethod()
+        {
+            string str = "01_02_03_04_05";
+
+            // オーバーロードメソッド特定テストのため引数違いをテストする
+            object res = MyUtility.Reflection.DoMethod(str, "Substring", new object[] { 3, 2 });
+            Assert.IsTrue(res is string result && result == "02");
+
+            res = MyUtility.Reflection.DoMethod(str, "Substring", new object[] { 3 });
+            Assert.IsTrue(res is string result2 && result2 == "02_03_04_05");
+        }
     }
 }
