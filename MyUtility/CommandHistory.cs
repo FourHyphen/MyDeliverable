@@ -10,9 +10,9 @@ namespace MyUtility
     {
         private List<T> CommandList { get; set; } = new List<T>();
 
-        private int Index { get; set; } = -1;
+        private int Offset { get; set; } = -1;
 
-        private int MaxIndex { get { return CommandList.Count - 1; } }
+        private int MaxOffset { get { return CommandList.Count - 1; } }
 
         public void Execute(T commandInstance, string methodName, object[] args = null)
         {
@@ -28,7 +28,7 @@ namespace MyUtility
             //    return;
             //}
 
-            if (Index < MaxIndex)
+            if (Offset < MaxOffset)
             {
                 // 履歴の途中に操作を差し込んだ場合、旧最新操作履歴を削除する
                 DeleteNewerHistory();
@@ -41,19 +41,19 @@ namespace MyUtility
         private void DeleteNewerHistory()
         {
             // 例
-            // Index:                        ↓(= 1)
-            // 履歴 :  [0] Init  [1] Key.Down  [2] Key.Down  [3] Key.Up
-            //                                ↑ここに操作を入れる場合、2つ削除する
-            //  -> RemoveRange(2, deleteNum = 2)
-            int deleteNum = MaxIndex - Index;    // = 現時点のIndexの次から全てを削除
-            int deleteStart = Index + 1;
+            // Offset:           ↓(= 1)
+            // 履歴  :  [0] Init  [1] Key.Down  [2] Key.Down  [3] Key.Up
+            //                   ↑ここに操作を入れる場合、3つ削除する
+            //  -> RemoveRange(1, deleteNum = 3)
+            int deleteStart = Offset + 1;    // = 現時点のOffsetの次以降を全て削除
+            int deleteNum = MaxOffset - Offset;
             CommandList.RemoveRange(deleteStart, deleteNum);
         }
 
         private void AddHistoryCore(T commandInstance)
         {
             CommandList.Add(commandInstance);
-            Index++;
+            Offset++;
         }
 
         /// <summary>
@@ -79,15 +79,15 @@ namespace MyUtility
 
         private object UndoCore(int undoNum, string returnPropertyName = "")
         {
-            Index = System.Math.Max(-1, Index - undoNum);
-            return Index < 0 ? null : Now(returnPropertyName);
+            Offset = System.Math.Max(-1, Offset - undoNum);
+            return Offset < 0 ? null : Now(returnPropertyName);
         }
 
         private object Now(string propertyName)
         {
             if (propertyName == "")
             {
-                return CommandList[Index];
+                return CommandList[Offset];
             }
             else
             {
@@ -98,7 +98,7 @@ namespace MyUtility
         private object GetPropertyOfReturn(string propertyName)
         {
             //return CommandList[Index].After;
-            return CommandList[Index].GetType().GetProperty(propertyName).GetValue(CommandList[Index]);
+            return CommandList[Offset].GetType().GetProperty(propertyName).GetValue(CommandList[Offset]);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace MyUtility
 
         private object RedoCore(int redoNum, string returnPropertyName = "")
         {
-            Index = System.Math.Min(Index + redoNum, MaxIndex);
+            Offset = System.Math.Min(Offset + redoNum, MaxOffset);
             return Now(returnPropertyName);
         }
     }
