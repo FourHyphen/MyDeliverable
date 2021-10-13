@@ -88,5 +88,57 @@ namespace TestMyDeliverable
             res = MyUtility.Reflection.DoMethod(str, "Substring", new object[] { 3 });
             Assert.IsTrue(res is string result2 && result2 == "02_03_04_05");
         }
+
+        [TestMethod]
+        public void DirectoryZip()
+        {
+            // 準備
+            string folderPath = System.IO.Path.GetFullPath("zipfolder_" + MyUtility.Guid.Get());
+            string zipPath = System.IO.Path.GetFullPath("ziptext.zip");
+            System.IO.Directory.CreateDirectory(folderPath);
+            Assert.IsFalse(System.IO.File.Exists(zipPath));
+
+            // Zip
+            MyUtility.Directory.Zip(folderPath, zipPath);
+
+            // ファイル確認
+            Assert.IsTrue(System.IO.File.Exists(zipPath));
+
+            // 後始末
+            System.IO.Directory.Delete(folderPath);
+            System.IO.File.Delete(zipPath);
+        }
+
+        [TestMethod]
+        public void DirectoryToRecycleBin()
+        {
+            // 準備: 削除するフォルダを作成
+            string folderName = "deletefolder_" + MyUtility.Guid.Get();
+            string folderPath = System.IO.Path.GetFullPath(folderName);
+            System.IO.Directory.CreateDirectory(folderPath);
+
+            // フォルダのごみ箱への移動
+            TestToRecycleBinCore(folderName, folderPath, System.IO.Directory.Exists, MyUtility.Directory.ToRecycleBin);
+        }
+
+        private void TestToRecycleBinCore(string name, string path, Func<string, bool> exists, Action<string> toRecycleBin)
+        {
+            // 準備: ごみ箱に存在しないこと
+            var bins = MyUtility.RecycleBin.GetFileNames();
+            Assert.IsFalse(bins.Contains(name));
+
+            // 準備: ファイル/フォルダが存在すること
+            Assert.IsTrue(exists(path));
+
+            // ごみ箱への移動
+            toRecycleBin(path);
+
+            // 削除されたことの確認
+            Assert.IsFalse(exists(path));
+
+            // ごみ箱には存在することの確認
+            bins = MyUtility.RecycleBin.GetFileNames();
+            Assert.IsTrue(bins.Contains(name));
+        }
     }
 }
