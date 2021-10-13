@@ -140,5 +140,25 @@ namespace TestMyDeliverable
             bins = MyUtility.RecycleBin.GetFileNames();
             Assert.IsTrue(bins.Contains(name));
         }
+
+        [TestMethod]
+        public void FileZip()
+        {
+            // 準備
+            string filePath = System.IO.Path.GetFullPath($"zipfile_{MyUtility.Guid.Get()}.txt");
+            string zipPath = filePath.Replace(".txt", ".zip");
+            System.IO.File.AppendAllText(filePath, "testtest");
+            Assert.IsFalse(System.IO.File.Exists(zipPath));
+
+            // Zip
+            MyUtility.File.Zip(filePath);
+
+            // ファイル確認
+            Assert.IsTrue(System.IO.File.Exists(zipPath));
+
+            // 後始末
+            System.IO.File.Delete(filePath);
+            System.IO.File.Delete(zipPath);
+        }
     }
 }
