@@ -7,6 +7,12 @@ namespace TestMyDeliverable
     [TestClass]
     public class TestMyUtility
     {
+        [TestInitialize]
+        public void Init()
+        {
+            EnvironmentTest.Set();
+        }
+
         [TestMethod]
         public void Clipboard()
         {
@@ -159,6 +165,15 @@ namespace TestMyDeliverable
             // 後始末
             System.IO.File.Delete(filePath);
             System.IO.File.Delete(zipPath);
+        }
+
+        [TestMethod]
+        public void ImageGetSize()
+        {
+            string imagePath = System.IO.Path.GetFullPath(@".\TestData\ImageGetSize.png");
+
+            // 3840 x 2560
+            Assert.Inconclusive();
         }
     }
 }
