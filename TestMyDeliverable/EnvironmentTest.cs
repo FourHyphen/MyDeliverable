@@ -8,32 +8,32 @@ namespace TestMyDeliverable
 {
     public static class EnvironmentTest
     {
-        public static void Set()
+        public static void Set(string testDataFolderName)
         {
             // テストスイートの場合、2回目以降？はすでに設定済み
-            if (IsCurrentTestDataFolder())
+            if (IsCurrentTestDataFolder(testDataFolderName))
             {
                 return;
             }
 
             // テストの単体実行時
-            Environment.CurrentDirectory += "../../../TestData";
-            if (IsCurrentTestDataFolder())
+            Environment.CurrentDirectory += "../../../" + testDataFolderName;
+            if (IsCurrentTestDataFolder(testDataFolderName))
             {
                 return;
             }
 
             // テストスイートによる全テスト実行時
-            Environment.CurrentDirectory += "../TestMyDeliverable";
-            if (!IsCurrentTestDataFolder())
+            Environment.CurrentDirectory += "../../TestMyDeliverable/" + testDataFolderName;
+            if (!IsCurrentTestDataFolder(testDataFolderName))
             {
-                throw new System.IO.DirectoryNotFoundException($@"Not Found: {Environment.CurrentDirectory}\TestData");
+                throw new System.IO.DirectoryNotFoundException($@"Not Found: {Environment.CurrentDirectory}\{testDataFolderName}");
             }
         }
 
-        private static bool IsCurrentTestDataFolder()
+        private static bool IsCurrentTestDataFolder(string testDataFolderName)
         {
-            return System.IO.Path.GetFileName(Environment.CurrentDirectory) == "TestData";
+            return System.IO.Path.GetFileName(Environment.CurrentDirectory) == testDataFolderName;
         }
     }
 }

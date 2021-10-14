@@ -10,7 +10,8 @@ namespace TestMyDeliverable
         [TestInitialize]
         public void Init()
         {
-            EnvironmentTest.Set();
+            // Current = "......\TestData"
+            EnvironmentTest.Set("TestData");
         }
 
         [TestMethod]
@@ -170,10 +171,10 @@ namespace TestMyDeliverable
         [TestMethod]
         public void ImageGetSize()
         {
-            string imagePath = System.IO.Path.GetFullPath(@".\TestData\ImageGetSize.png");
+            string imagePath = System.IO.Path.GetFullPath(@"ImageGetSize.jpg");
 
-            // 3840 x 2560
-            Assert.Inconclusive();
+            (int Width, int Height) size = MyUtility.Image.GetSize(imagePath);
+            Assert.AreEqual(expected: (3840, 2560), actual: size);
         }
     }
 }
