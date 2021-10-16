@@ -239,5 +239,14 @@ namespace TestMyDeliverable
             Assert.AreEqual(expected: 1, actual: MyUtility.Math.Round(0.51));
             Assert.AreEqual(expected: 0, actual: MyUtility.Math.Round(0.49));
         }
+
+        [TestMethod]
+        public void MathCalcRotatePoint()
+        {
+            // 実装時の値を正とする
+            (double X, double Y) p = MyUtility.Math.CalcRotatePoint((3.0, 2.0), (1.0, 1.0), 30);
+            Assert.IsTrue(System.Math.Round(p.X, 10) == System.Math.Round(2.2320508075688776, 10));
+            Assert.IsTrue(System.Math.Round(p.Y, 10) == System.Math.Round(2.8660254037844384, 10));
+        }
     }
 }

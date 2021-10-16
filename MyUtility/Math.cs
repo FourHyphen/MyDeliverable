@@ -41,5 +41,20 @@ namespace MyUtility
         {
             return degree * System.Math.PI / 180.0;
         }
+
+        public static (double X, double Y) CalcRotatePoint((double X, double Y) p, (double X, double Y) center, double degree)
+        {
+            double rad = ToRadian(degree);
+            return CalcRotatePoint(p, center, System.Math.Cos(rad), System.Math.Sin(rad));
+        }
+
+        public static (double X, double Y) CalcRotatePoint((double X, double Y) p, (double X, double Y) center, double cos, double sin)
+        {
+            double x = p.X - center.X;
+            double y = p.Y - center.Y;
+            double rotateX = x * cos - y * sin;
+            double rotateY = y * cos + x * sin;
+            return (rotateX + center.X, rotateY + center.Y);
+        }
     }
 }
