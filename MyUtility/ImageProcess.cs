@@ -151,10 +151,10 @@ namespace MyUtility
                 pd = (1.0, 1.0);
             }
 
-            double da = 1.0 / Common.CalcDistance(pa, p);
-            double db = 1.0 / Common.CalcDistance(pb, p);
-            double dc = 1.0 / Common.CalcDistance(pc, p);
-            double dd = 1.0 / Common.CalcDistance(pd, p);
+            double da = 1.0 / MyUtility.Math.CalcDistance(pa, p);
+            double db = 1.0 / MyUtility.Math.CalcDistance(pb, p);
+            double dc = 1.0 / MyUtility.Math.CalcDistance(pc, p);
+            double dd = 1.0 / MyUtility.Math.CalcDistance(pd, p);
             double sum = da + db + dc + dd;
             double rd = rBuf[ia] * da / sum + rBuf[ib] * db / sum + rBuf[ic] * dc / sum + rBuf[id] * dd / sum;    // sumでの除算をまとめるとテストに失敗する
             double gd = gBuf[ia] * da / sum + gBuf[ib] * db / sum + gBuf[ic] * dc / sum + gBuf[id] * dd / sum;
