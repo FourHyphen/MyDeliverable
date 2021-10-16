@@ -15,6 +15,28 @@ namespace MyUtility
             return System.Math.Sqrt(xDiff * xDiff + yDiff * yDiff);
         }
 
+        /// <summary>
+        /// 高速版: Min
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int Min(int a, int b)
+        {
+            return a < b ? a : b;
+        }
+
+        /// <summary>
+        /// 高速版: 正数の小数点以下四捨五入
+        /// </summary>
+        /// <param name="overZero"></param>
+        /// <returns></returns>
+        public static int Round(double overZero)
+        {
+            double tmp = overZero + 0.5;
+            return (int)tmp;
+        }
+
         public static double ToRadian(double degree)
         {
             return degree * System.Math.PI / 180.0;

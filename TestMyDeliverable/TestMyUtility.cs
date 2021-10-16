@@ -215,5 +215,29 @@ namespace TestMyDeliverable
                 Assert.AreEqual(c1, c2);
             }
         }
+
+        [TestMethod]
+        public void MathMin()
+        {
+            int a = 2, b = 3;
+            Assert.AreEqual(expected: a, actual: MyUtility.Math.Min(a, b));
+            Assert.AreEqual(expected: a, actual: MyUtility.Math.Min(b, a));
+
+            int c = -1, d = 0;
+            Assert.AreEqual(expected: c, actual: MyUtility.Math.Min(c, d));
+            Assert.AreEqual(expected: c, actual: MyUtility.Math.Min(d, c));
+
+            int e = -4, f = -3;
+            Assert.AreEqual(expected: e, actual: MyUtility.Math.Min(e, f));
+            Assert.AreEqual(expected: e, actual: MyUtility.Math.Min(f, e));
+        }
+
+        [TestMethod]
+        public void MathRound()
+        {
+            // 正数のみ / 負数の挙動は未定義
+            Assert.AreEqual(expected: 1, actual: MyUtility.Math.Round(0.51));
+            Assert.AreEqual(expected: 0, actual: MyUtility.Math.Round(0.49));
+        }
     }
 }
