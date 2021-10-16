@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace MyUtility
 {
@@ -21,6 +20,42 @@ namespace MyUtility
             {
                 return (image.Width, image.Height);
             }
+        }
+
+        /// <summary>
+        /// Bitmapの画素値をbyte配列にコピーする(並びはBGRABGRA...)
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns>byte[].Length = Width * 4 * Height</returns>
+        public static byte[] Copy(Bitmap src)
+        {
+            BitmapData data = src.LockBits(new Rectangle(0, 0, src.Width, src.Height),
+                                               ImageLockMode.ReadWrite,
+                                               PixelFormat.Format32bppArgb);
+            byte[] dst = new byte[src.Width * 4 * src.Height];
+            Marshal.Copy(data.Scan0, dst, 0, dst.Length);
+            src.UnlockBits(data);
+
+            return dst;
+        }
+
+        /// <summary>
+        /// byte配列からBitmapを作成
+        /// </summary>
+        /// <param name="src">Length = Width * 4 * Height, 並びはBGRABGRA...</param>
+        /// <param name="bitmapWidth"></param>
+        /// <param name="bitmapHeight"></param>
+        /// <returns></returns>
+        public static Bitmap CreateBitmap(byte[] src, int bitmapWidth, int bitmapHeight)
+        {
+            Bitmap bitmap= new Bitmap(bitmapWidth, bitmapHeight);
+            BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                                              ImageLockMode.ReadWrite,
+                                              PixelFormat.Format32bppArgb);
+            Marshal.Copy(src, 0, data.Scan0, src.Length);
+            bitmap.UnlockBits(data);
+
+            return bitmap;
         }
     }
 }

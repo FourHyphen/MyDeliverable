@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestMyDeliverable
@@ -175,6 +176,28 @@ namespace TestMyDeliverable
 
             (int Width, int Height) size = MyUtility.Image.GetSize(imagePath);
             Assert.AreEqual(expected: (3840, 2560), actual: size);
+        }
+
+        [TestMethod]
+        public void ImageBytes()
+        {
+            string imagePath = System.IO.Path.GetFullPath(@"ImageBytes.jpg");
+
+            using (Bitmap bitmap1 = new Bitmap(imagePath))
+            {
+                byte[] bytes = MyUtility.Image.Copy(bitmap1);
+                Color c = bitmap1.GetPixel(0, 0);
+                Assert.AreEqual(expected: c.B, actual: bytes[0]);
+                Assert.AreEqual(expected: c.G, actual: bytes[1]);
+                Assert.AreEqual(expected: c.R, actual: bytes[2]);
+
+                using (Bitmap bitmap2 = MyUtility.Image.CreateBitmap(bytes, bitmap1.Width, bitmap1.Height))
+                {
+                    Color c1 = bitmap1.GetPixel(bitmap1.Width - 1, bitmap1.Height - 1);
+                    Color c2 = bitmap2.GetPixel(bitmap2.Width - 1, bitmap2.Height - 1);
+                    Assert.AreEqual(expected: c1, actual: c2);
+                }
+            }
         }
     }
 }
