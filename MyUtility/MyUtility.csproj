@@ -54,6 +54,7 @@
     <Compile Include="File.cs" />
     <Compile Include="Guid.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="ImageProcess.cs" />
     <Compile Include="ImageWpf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecycleBin.cs" />
