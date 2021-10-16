@@ -57,5 +57,25 @@ namespace MyUtility
 
             return bitmap;
         }
+
+        /// <summary>
+        /// 左上(x1, y1) から 右下(x2, y2) を Trim
+        /// </summary>
+        /// <returns>Width = p2.X - p1.X, Height = p2.Y - p1.Y</returns>
+        public static Bitmap Trim(Bitmap bitmap, (int X, int Y) p1, (int X, int Y) p2)
+        {
+            int width = p2.X - p1.X;
+            int height = p2.Y - p1.Y;
+
+            Bitmap trimBitmap = new Bitmap(width, height);
+            using (Graphics g = Graphics.FromImage(trimBitmap))
+            {
+                Rectangle trim = new Rectangle(p1.X, p1.Y, width, height);
+                Rectangle draw = new Rectangle(0, 0, width, height);
+                g.DrawImage(bitmap, draw, trim, GraphicsUnit.Pixel);
+            }
+
+            return trimBitmap;
+        }
     }
 }

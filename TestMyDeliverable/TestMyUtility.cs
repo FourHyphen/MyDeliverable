@@ -199,5 +199,21 @@ namespace TestMyDeliverable
                 }
             }
         }
+
+        [TestMethod]
+        public void ImageTrim()
+        {
+            string imagePath = System.IO.Path.GetFullPath(@"ImageTrim.jpg");
+
+            using (Bitmap bitmap = new Bitmap(imagePath))
+            using (Bitmap trimmed = MyUtility.Image.Trim(bitmap, (10, 10), (30, 20)))
+            {
+                Assert.AreEqual(expected: 20, actual: trimmed.Width);
+                Assert.AreEqual(expected: 10, actual: trimmed.Height);
+                Color c1 = bitmap.GetPixel(25, 15);
+                Color c2 = trimmed.GetPixel(15, 5);
+                Assert.AreEqual(c1, c2);
+            }
+        }
     }
 }
