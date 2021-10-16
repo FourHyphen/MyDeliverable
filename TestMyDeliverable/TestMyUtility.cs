@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestMyDeliverable
@@ -262,9 +263,7 @@ namespace TestMyDeliverable
             Assert.IsTrue(System.IO.File.Exists(jsonPath));
 
             JsonTest test2 = MyUtility.Json.Read<JsonTest>(jsonPath);
-            Assert.AreEqual(expected: test.Id, actual: test2.Id);
-            Assert.AreEqual(expected: test.Names[2], actual: test2.Names[2]);
-            Assert.AreEqual(expected: test.Map["MapB"], actual: test2.Map["MapB"]);
+            Assert.IsTrue(test == test2);
 
             // 後始末
             System.IO.File.Delete(jsonPath);
@@ -283,6 +282,23 @@ namespace TestMyDeliverable
                 Id = id;
                 Names = names;
                 Map = map;
+            }
+
+            public static bool operator ==(JsonTest a, JsonTest b)
+            {
+                if (a.Id != b.Id) return false;
+
+                // using System.Linq;
+                if (!a.Names.SequenceEqual(b.Names)) return false;
+
+                if (!a.Map.OrderBy(o => o.Key).SequenceEqual(b.Map.OrderBy(o => o.Key))) return false;
+
+                return true;
+            }
+
+            public static bool operator !=(JsonTest a, JsonTest b)
+            {
+                return !(a == b);
             }
         }
     }
