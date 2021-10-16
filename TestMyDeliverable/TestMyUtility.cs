@@ -248,5 +248,42 @@ namespace TestMyDeliverable
             Assert.IsTrue(System.Math.Round(p.X, 10) == System.Math.Round(2.2320508075688776, 10));
             Assert.IsTrue(System.Math.Round(p.Y, 10) == System.Math.Round(2.8660254037844384, 10));
         }
+
+        [TestMethod]
+        public void Json()
+        {
+            string jsonPath = System.IO.Path.GetFullPath($"JsonTest_{MyUtility.Guid.Get()}.json");
+            JsonTest test = new JsonTest(
+                42,
+                new string[] { "A", "B", "C" },
+                new Dictionary<string, int> { { "MapA", 10 }, { "MapB", 20 } }
+                );
+            MyUtility.Json.CreateFile(test, jsonPath);
+            Assert.IsTrue(System.IO.File.Exists(jsonPath));
+
+            JsonTest test2 = MyUtility.Json.Read<JsonTest>(jsonPath);
+            Assert.AreEqual(expected: test.Id, actual: test2.Id);
+            Assert.AreEqual(expected: test.Names[2], actual: test2.Names[2]);
+            Assert.AreEqual(expected: test.Map["MapB"], actual: test2.Map["MapB"]);
+
+            // 後始末
+            System.IO.File.Delete(jsonPath);
+        }
+
+        public class JsonTest
+        {
+            public int Id { get; private set; }
+
+            public string[] Names { get; private set; }
+
+            public Dictionary<string, int> Map { get; private set; }
+
+            public JsonTest(int id, string[] names, Dictionary<string, int> map)
+            {
+                Id = id;
+                Names = names;
+                Map = map;
+            }
+        }
     }
 }
