@@ -1,16 +1,22 @@
 ﻿namespace MyUtility
 {
-    class Task
+    public static class Task
     {
-        private void ExampleDelay()
+        /// <summary>
+        /// 別タスクの処理を動かしつつ本処理側を待機したい場合に実行する
+        /// </summary>
+        /// <param name="second"></param>
+        public static void Delay(double second)
         {
-            DelayCore();
-        }
+            System.Threading.Tasks.Task t = System.Threading.Tasks.Task.Delay((int)(second * 1000.0));
+            t.Wait();
 
-        private async void DelayCore()
-        {
-            // 非同期待機: Sleep()だと同期待機なのでブロックしてしまう
-            await System.Threading.Tasks.Task.Delay(1000);
+            // メモ: これと同じ効果
+            //System.Threading.Tasks.Task task = System.Threading.Tasks.Task.Run(() =>
+            //{
+            //    System.Threading.Thread.Sleep((int)(second * 1000.0));
+            //});
+            //System.Threading.Tasks.Task.WaitAll(task);
         }
     }
 }

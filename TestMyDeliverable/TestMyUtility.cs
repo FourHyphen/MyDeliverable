@@ -362,5 +362,23 @@ namespace TestMyDeliverable
             System.IO.File.Delete(filePath);
             System.IO.Directory.Delete(folderPath);
         }
+
+        [TestMethod]
+        public void TaskDelayAndTaskService()
+        {
+            double ToSec(double milli) => milli / 1000.0;
+            int millisec = 100;
+
+            using (System.IO.StringWriter sw = new System.IO.StringWriter())
+            using (MyUtility.TaskService ts = new MyUtility.TaskService(typeof(System.Console).FullName, "Write", new object[] { 1 }, millisec))
+            {
+                Console.SetOut(sw);
+                ts.Start();
+                MyUtility.Task.Delay(ToSec(millisec * 3) + 0.1);    // 実行回数は適当 / 少し余裕を持たせた + 0.1
+                ts.Stop();
+
+                Assert.AreEqual(expected: "111", actual: sw.ToString());
+            }
+        }
     }
 }

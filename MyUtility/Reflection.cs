@@ -11,14 +11,24 @@ namespace MyUtility
     {
         public static object DoStaticMethod(string className, string methodName, object[] args = null)
         {
-            MethodInfo method = GetMethod(Type.GetType(className), methodName, args);
+            MethodInfo method = GetMethod(className, methodName, args);
             return method.Invoke(null, args);
         }
 
         public static object DoMethod<T>(T instance, string methodName, object[] args = null) where T:class
         {
-            MethodInfo method = GetMethod(instance.GetType(), methodName, args);
+            MethodInfo method = GetMethod(instance, methodName, args);
             return method.Invoke(instance, args);
+        }
+
+        public static MethodInfo GetMethod(string className, string methodName, object[] args = null)
+        {
+            return GetMethod(Type.GetType(className), methodName, args);
+        }
+
+        public static MethodInfo GetMethod<T>(T instance, string methodName, object[] args = null) where T: class
+        {
+            return GetMethod(instance.GetType(), methodName, args);
         }
 
         private static MethodInfo GetMethod(Type type, string methodName, object[] args = null)
