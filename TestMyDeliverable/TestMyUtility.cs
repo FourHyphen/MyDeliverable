@@ -301,5 +301,48 @@ namespace TestMyDeliverable
                 return !(a == b);
             }
         }
+
+        [TestMethod]
+        public void ListAreEqual()
+        {
+            // 値型
+            List<int> list1 = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            List<int> list2 = list1;
+            List<int> list3 = new List<int>() { 2, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            List<int> list4 = new List<int>() { 2, 1, 3, 4, 5, 6, 7, 8, 9, 10 };
+            List<int> list5 = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> list6 = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            Assert.IsTrue(MyUtility.List.AreEqual(list1, list2));
+            Assert.IsFalse(MyUtility.List.AreEqual(list1, list3));
+            Assert.IsFalse(MyUtility.List.AreEqual(list1, list4));
+            Assert.IsFalse(MyUtility.List.AreEqual(list1, list5));
+            Assert.IsTrue(MyUtility.List.AreEqual(list1, list6));
+
+            // 参照型
+            List<string> slist1 = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+            List<string> slist2 = slist1;
+            List<string> slist3 = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "I" };
+            List<string> slist4 = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "J", "I" };
+            List<string> slist5 = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+            List<string> slist6 = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+
+            Assert.IsTrue(MyUtility.List.AreEqual(slist1, slist2));
+            Assert.IsFalse(MyUtility.List.AreEqual(slist1, slist3));
+            Assert.IsFalse(MyUtility.List.AreEqual(slist1, slist4));
+            Assert.IsFalse(MyUtility.List.AreEqual(slist1, slist5));
+            Assert.IsTrue(MyUtility.List.AreEqual(slist1, slist6));
+        }
+
+        [TestMethod]
+        public void ListShuffle()
+        {
+            List<string> list = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+            List<string> shuffle1 = MyUtility.List.Shuffle(list);
+            List<string> shuffle2 = MyUtility.List.Shuffle(list);
+            Assert.IsFalse(MyUtility.List.AreEqual(list, shuffle1));
+            Assert.IsFalse(MyUtility.List.AreEqual(shuffle1, shuffle2));
+            Assert.IsTrue(MyUtility.List.AreEqual(shuffle1, shuffle1));
+        }
     }
 }
