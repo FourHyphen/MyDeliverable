@@ -69,6 +69,7 @@
     <Compile Include="Json.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Math.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecycleBin.cs" />
     <Compile Include="Reflection.cs" />

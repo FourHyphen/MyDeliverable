@@ -344,5 +344,23 @@ namespace TestMyDeliverable
             Assert.IsFalse(MyUtility.List.AreEqual(shuffle1, shuffle2));
             Assert.IsTrue(MyUtility.List.AreEqual(shuffle1, shuffle1));
         }
+
+        [TestMethod]
+        public void PathIsFolder()
+        {
+            string guid = MyUtility.Guid.Get();
+            string filePath = System.IO.Path.GetFullPath($"PathIsFolder_File_{guid}.txt");
+            string folderPath = System.IO.Path.GetFullPath($"PathIsFolder_Folder_{guid}");
+
+            System.IO.File.WriteAllText(filePath, "filePath");
+            System.IO.Directory.CreateDirectory(folderPath);
+
+            Assert.IsTrue(MyUtility.Path.IsFolder(folderPath));
+            Assert.IsFalse(MyUtility.Path.IsFolder(filePath));
+
+            // 後始末
+            System.IO.File.Delete(filePath);
+            System.IO.Directory.Delete(folderPath);
+        }
     }
 }
