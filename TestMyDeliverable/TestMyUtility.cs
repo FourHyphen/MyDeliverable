@@ -380,5 +380,29 @@ namespace TestMyDeliverable
                 Assert.AreEqual(expected: "111", actual: sw.ToString());
             }
         }
+
+        [TestMethod]
+        public void TaskServiceNoWait()
+        {
+            using (System.IO.StringWriter sw = new System.IO.StringWriter())
+            using (MyUtility.TaskServiceNoWait tsnw = new MyUtility.TaskServiceNoWait(typeof(System.Console).FullName, "Write", new object[] { 1 }))
+            {
+                Console.SetOut(sw);
+                tsnw.Start();
+                MyUtility.Task.Delay(0.001);    // 実行時間は適当だが手元環境だと 0.1[ms] は短すぎたため 1 [ms]
+                tsnw.Stop();
+
+                // 数回実行されていれば OK とする
+                string str1 = sw.ToString();
+                Assert.IsTrue(str1.Length > 5);
+
+                // 再スタート機能の確認
+                tsnw.Restart();
+                MyUtility.Task.Delay(0.001);
+                tsnw.Stop();
+
+                Assert.IsTrue(str1.Length < sw.ToString().Length);
+            }
+        }
     }
 }
