@@ -74,6 +74,7 @@
     <Compile Include="RecycleBin.cs" />
     <Compile Include="Reflection.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">
