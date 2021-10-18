@@ -42,6 +42,7 @@ namespace MyUtility
             ToCallStop?.Dispose();
             Instance = null;
             Args = null;
+            System.GC.SuppressFinalize(this);
         }
 
         public void Start()

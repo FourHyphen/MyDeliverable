@@ -14,12 +14,18 @@ namespace MyUtility
     {
         private System.Timers.Timer Timer { get; set; }
 
+        /// <remarks>
+        /// 備考: 最初に実行されるのは tillDoTimeMilliseconds 後であり、Start() 直後ではない
+        /// </remarks>
         public TaskService(string className, string methodName, object[] args, int tillDoTimeMilliseconds)
         {
             MethodInfo method = Reflection.GetMethod(className, methodName, args);
             Init(method, null, args, tillDoTimeMilliseconds);
         }
 
+        /// <remarks>
+        /// 備考: 最初に実行されるのは tillDoTimeMilliseconds 後であり、Start() 直後ではない
+        /// </remarks>
         public TaskService(object instance, string methodName, object[] args, int tillDoTimeMilliseconds)
         {
             MethodInfo method = Reflection.GetMethod(instance, methodName, args);
@@ -43,8 +49,9 @@ namespace MyUtility
             {
                 Timer.Stop();
                 Timer.Dispose();
-                Timer = null;
             }
+
+            System.GC.SuppressFinalize(this);
         }
 
         /// <summary>
