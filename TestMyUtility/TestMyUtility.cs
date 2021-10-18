@@ -374,7 +374,7 @@ namespace TestMyDeliverable
             {
                 Console.SetOut(sw);
                 ts.Start();
-                MyUtility.Task.Delay(ToSec(millisec * 3) + 0.01);    // 実行回数は適当 / 少し余裕を持たせた + 10[ms]
+                MyUtility.Task.Delay(ToSec(millisec * 3) + 0.05);    // 実行回数は適当 / 少し余裕を持たせた + 50[ms]
                 ts.Stop();
 
                 Assert.AreEqual(expected: "111", actual: sw.ToString());

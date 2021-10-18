@@ -24,7 +24,7 @@ namespace TestMyDeliverable
             }
 
             // テストスイートによる全テスト実行時
-            Environment.CurrentDirectory += "../../TestMyDeliverable/" + testDataFolderName;
+            Environment.CurrentDirectory += "../../TestMyUtility/" + testDataFolderName;
             if (!IsCurrentTestDataFolder(testDataFolderName))
             {
                 throw new System.IO.DirectoryNotFoundException($@"Not Found: {Environment.CurrentDirectory}\{testDataFolderName}");
