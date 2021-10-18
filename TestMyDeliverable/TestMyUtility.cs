@@ -374,7 +374,7 @@ namespace TestMyDeliverable
             {
                 Console.SetOut(sw);
                 ts.Start();
-                MyUtility.Task.Delay(ToSec(millisec * 3) + 0.1);    // 実行回数は適当 / 少し余裕を持たせた + 0.1
+                MyUtility.Task.Delay(ToSec(millisec * 3) + 0.01);    // 実行回数は適当 / 少し余裕を持たせた + 10[ms]
                 ts.Stop();
 
                 Assert.AreEqual(expected: "111", actual: sw.ToString());
@@ -403,6 +403,16 @@ namespace TestMyDeliverable
 
                 Assert.IsTrue(str1.Length < sw.ToString().Length);
             }
+        }
+
+        [TestMethod]
+        public void Time()
+        {
+            TimeSpan t1 = MyUtility.Time.CreateTimeSpan("d.hh:mm:ss.fff", "1.01:23:45.678");
+            TimeSpan t2 = MyUtility.Time.CreateTimeSpan("d.hh:mm:ss.fff", "1.01:22:44.677");
+
+            double diff = MyUtility.Time.DiffMillisecond(t1, t2);
+            Assert.AreEqual(expected: 1 * 60 * 1000 + 1 * 1000 + 1, actual: diff);
         }
     }
 }

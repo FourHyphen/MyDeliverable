@@ -77,6 +77,7 @@
     <Compile Include="Task.cs" />
     <Compile Include="TaskService.cs" />
     <Compile Include="TaskServiceNoWait.cs" />
+    <Compile Include="Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">
