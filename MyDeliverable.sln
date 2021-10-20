@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMyUtility", "TestMyUtil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDeliverable", "WpfDeliverable\WpfDeliverable.csproj", "{7CB86D1A-22BB-4475-81B9-48BC12364AA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWpfDeliverable", "TestWpfDeliverable\TestWpfDeliverable.csproj", "{6D7F463F-A3F4-45C5-A2D7-FA5E8A4A2EF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7CB86D1A-22BB-4475-81B9-48BC12364AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB86D1A-22BB-4475-81B9-48BC12364AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB86D1A-22BB-4475-81B9-48BC12364AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7F463F-A3F4-45C5-A2D7-FA5E8A4A2EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7F463F-A3F4-45C5-A2D7-FA5E8A4A2EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7F463F-A3F4-45C5-A2D7-FA5E8A4A2EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7F463F-A3F4-45C5-A2D7-FA5E8A4A2EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
