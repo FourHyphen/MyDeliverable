@@ -7,9 +7,17 @@ namespace WpfDeliverable
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BindButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowBindWindow();
+        }
+
+        private void ShowBindWindow()
+        {
             Bind b = new Bind();
             b.Show();
-            this.Close();
         }
     }
 }
