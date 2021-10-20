@@ -13,10 +13,14 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <Button x:Name="BindButton"
+            <StackPanel>
+                <Label x:Name="LabelTest"
+                   Content="test1"/>
+                <Button x:Name="BindButton"
                     Content="Bind"
                     Margin="10"
                     Click="BindButtonClick"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

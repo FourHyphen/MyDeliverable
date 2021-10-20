@@ -43,5 +43,12 @@ namespace TestWpfDeliverable
         {
             // Init による MainWindow 立ち上げと Cleanup による MainWindow クローズが上手くいけば OK
         }
+
+        [TestMethod]
+        public void LabelAdapter()
+        {
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            Assert.AreEqual(expected: "test1", actual: mwd.GetLabelTest());
+        }
     }
 }
