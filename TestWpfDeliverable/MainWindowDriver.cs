@@ -2,8 +2,7 @@
 using Codeer.Friendly.Windows;
 using Codeer.Friendly.Windows.Grasp;
 using RM.Friendly.WPFStandardControls;
-using System.Linq;
-using System.Windows.Input;
+using System.Windows;
 
 namespace TestWpfDeliverable
 {
@@ -13,34 +12,25 @@ namespace TestWpfDeliverable
 
         private WindowsAppFriend App { get; }
 
-        private IWPFDependencyObjectCollection<System.Windows.DependencyObject> Tree { get; set; }
-
-        private LabelAdapter LabelTest { get; set; }
+        public LabelDriver LabelTest { get; }
 
         public MainWindowDriver(WindowsAppFriend app)
         {
             MainWindow = app.Type("System.Windows.Application").Current.MainWindow;
             App = app;
-            LabelTest = new LabelAdapter("LabelTest");
-            Tree = new WindowControl(MainWindow).LogicalTree();
-        }
-
-        public string GetLabelTest()
-        {
-            UpdateNowMainWindowStatus();
-            return LabelTest.Content(Tree);
-        }
-
-        private void UpdateNowMainWindowStatus()
-        {
-            Tree = new WindowControl(MainWindow).LogicalTree();    // 現在の画面状況を取得
+            LabelTest = new LabelDriver(MainWindow, "LabelTest");
         }
 
         private int CountImage(string imageName)
         {
-            UpdateNowMainWindowStatus();
-            var display = Tree.ByType<System.Windows.Controls.Image>().ByName(imageName);
+            var tree = GetLogicalTree();
+            var display = tree.ByType<System.Windows.Controls.Image>().ByName(imageName);
             return display.Count;
+        }
+
+        private IWPFDependencyObjectCollection<DependencyObject> GetLogicalTree()
+        {
+            return new WindowControl(MainWindow).LogicalTree();    // 現在の画面状況を取得
         }
     }
 }

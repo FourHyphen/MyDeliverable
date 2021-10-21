@@ -48,7 +48,8 @@ namespace TestWpfDeliverable
         public void LabelAdapter()
         {
             MainWindowDriver mwd = new MainWindowDriver(App);
-            Assert.AreEqual(expected: "test1", actual: mwd.GetLabelTest());
+            LabelDriver label = mwd.LabelTest;
+            Assert.AreEqual(expected: "test1", actual: label.Content());
         }
     }
 }
