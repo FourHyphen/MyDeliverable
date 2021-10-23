@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindWindowDriver.cs" />
+    <Compile Include="ImageWindowDriver.cs" />
     <Compile Include="LabelDriver.cs" />
     <Compile Include="MainWindowDriver.cs" />
     <Compile Include="TestFeature.cs" />

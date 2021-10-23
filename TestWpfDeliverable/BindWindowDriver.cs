@@ -6,10 +6,8 @@ using RM.Friendly.WPFStandardControls;
 
 namespace TestWpfDeliverable
 {
-    internal class BindWindowDriver
+    public class BindWindowDriver
     {
-        private WindowsAppFriend App;
-
         private WindowControl BindWindow { get; }
 
         public WPFButtonBase OKButton { get; }
@@ -18,8 +16,7 @@ namespace TestWpfDeliverable
 
         public BindWindowDriver(WindowsAppFriend app)
         {
-            App = app;
-            BindWindow = WindowControl.IdentifyFromWindowText(App, "Bind");
+            BindWindow = WindowControl.IdentifyFromWindowText(app, "Bind");
 
             dynamic d = BindWindow.AppVar.Dynamic();
             OKButton = new WPFButtonBase(d.OKButton);

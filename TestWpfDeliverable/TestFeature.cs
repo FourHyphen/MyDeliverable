@@ -69,11 +69,40 @@ namespace TestWpfDeliverable
 
                 bwd.CancelButton.EmulateClick();
                 Assert.AreEqual(expected: "Cancel clicked", actual: bwd.Text());
-
             }
             finally
             {
                 bwd?.CloseWindow();
+            }
+        }
+
+        [TestMethod]
+        public void ImageWindow()
+        {
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            mwd.ImageButton.EmulateClick();
+
+            ImageWindowDriver iwd = null;
+            try
+            {
+                iwd = new ImageWindowDriver(App);
+
+                iwd.MoveXPlusButton.EmulateClick();
+                Assert.AreEqual(expected: (10, 0), actual: iwd.GetImageLeftTop());
+
+                iwd.MoveYPlusButton.EmulateClick();
+                iwd.MoveYPlusButton.EmulateClick();
+                Assert.AreEqual(expected: (10, 20), actual: iwd.GetImageLeftTop());
+
+                iwd.MoveXMinusButton.EmulateClick();
+                Assert.AreEqual(expected: (0, 20), actual: iwd.GetImageLeftTop());
+
+                iwd.MoveYMinusButton.EmulateClick();
+                Assert.AreEqual(expected: (0, 10), actual: iwd.GetImageLeftTop());
+            }
+            finally
+            {
+                iwd?.CloseWindow();
             }
         }
     }

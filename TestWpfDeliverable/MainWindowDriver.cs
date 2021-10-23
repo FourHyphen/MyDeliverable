@@ -16,12 +16,15 @@ namespace TestWpfDeliverable
 
         public WPFButtonBase BindButton { get; }
 
+        public WPFButtonBase ImageButton { get; }
+
         public MainWindowDriver(WindowsAppFriend app)
         {
             MainWindow = app.Type("System.Windows.Application").Current.MainWindow;
             App = app;
             LabelTest = new LabelDriver(MainWindow, "LabelTest");
             BindButton = new WPFButtonBase(MainWindow.BindButton);
+            ImageButton = new WPFButtonBase(MainWindow.ImageButton);
         }
 
         private int CountImage(string imageName)
