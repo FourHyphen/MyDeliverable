@@ -51,5 +51,30 @@ namespace TestWpfDeliverable
             LabelDriver label = mwd.LabelTest;
             Assert.AreEqual(expected: "test1", actual: label.Content());
         }
+
+        [TestMethod]
+        public void Bind()
+        {
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            mwd.BindButton.EmulateClick();
+
+            BindWindowDriver bwd = null;
+            try
+            {
+                bwd = new BindWindowDriver(App);
+                Assert.AreEqual(expected: "Init", actual: bwd.Text());
+
+                bwd.OKButton.EmulateClick();
+                Assert.AreEqual(expected: "OK clicked", actual: bwd.Text());
+
+                bwd.CancelButton.EmulateClick();
+                Assert.AreEqual(expected: "Cancel clicked", actual: bwd.Text());
+
+            }
+            finally
+            {
+                bwd?.CloseWindow();
+            }
+        }
     }
 }
