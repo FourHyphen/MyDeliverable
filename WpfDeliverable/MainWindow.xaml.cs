@@ -24,5 +24,10 @@ namespace WpfDeliverable
         {
             new Cards().Show();
         }
+
+        private void ImageButtonClick(object sender, RoutedEventArgs e)
+        {
+            new ImageWindow().Show();
+        }
     }
 }

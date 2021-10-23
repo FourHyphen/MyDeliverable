@@ -24,6 +24,10 @@
                     Content="Cards"
                     Margin="10"
                     Click="CardsButtonClick"/>
+                <Button x:Name="ImageButton"
+                    Content="Image"
+                    Margin="10"
+                    Click="ImageButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

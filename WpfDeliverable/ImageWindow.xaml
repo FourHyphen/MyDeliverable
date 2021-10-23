@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfDeliverable.ImageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDeliverable"
+        mc:Ignorable="d"
+        Title="ImageWindow" Height="200" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <Button x:Name="MoveXPlusButton"
+                    Content="MoveXPlus"
+                    Margin="10"
+                    Click="MoveXPlusButtonClick"/>
+                <Button x:Name="MoveXMinusButton"
+                    Content="MoveXMinus"
+                    Margin="10"
+                    Click="MoveXMinusButtonClick"/>
+                <Button x:Name="MoveYPlusButton"
+                    Content="MoveYPlus"
+                    Margin="10"
+                    Click="MoveYPlusButtonClick"/>
+                <Button x:Name="MoveYMinusButton"
+                    Content="MoveYMinus"
+                    Margin="10"
+                    Click="MoveYMinusButtonClick"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid x:Name="ImageArea"/>
+        </Grid>
+    </Grid>
+</Window>

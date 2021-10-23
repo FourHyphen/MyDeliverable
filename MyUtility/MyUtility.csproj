@@ -65,7 +65,6 @@
     <Compile Include="Guid.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="ImageProcess.cs" />
-    <Compile Include="ImageWpf.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Math.cs" />
