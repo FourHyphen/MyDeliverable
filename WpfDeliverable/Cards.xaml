@@ -1,30 +1,32 @@
-﻿<Window x:Class="WpfDeliverable.MainWindow"
+﻿<Window x:Class="WpfDeliverable.Cards"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDeliverable"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="400">
+        Title="Cards" Height="400" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <StackPanel>
-                <Label x:Name="LabelTest"
-                   Content="test1"/>
-                <Button x:Name="BindButton"
-                    Content="Bind"
+                <Button x:Name="AddButton"
+                    Content="Add"
                     Margin="10"
-                    Click="BindButtonClick"/>
-                <Button x:Name="CardsButton"
-                    Content="Cards"
+                    Click="AddButtonClick"/>
+                <Button x:Name="DeleteButton"
+                    Content="Delete"
                     Margin="10"
-                    Click="CardsButtonClick"/>
+                    Click="DeleteButtonClick"/>
             </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Canvas x:Name="CardArea"/>
         </Grid>
     </Grid>
 </Window>

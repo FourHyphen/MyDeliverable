@@ -19,5 +19,10 @@ namespace WpfDeliverable
             Bind b = new Bind();
             b.Show();
         }
+
+        private void CardsButtonClick(object sender, RoutedEventArgs e)
+        {
+            new Cards().Show();
+        }
     }
 }
