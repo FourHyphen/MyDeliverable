@@ -34,5 +34,10 @@ namespace WpfDeliverable
         {
             MessageBox.Show("MessageBoxTest", "test_message");
         }
+
+        private void EnableKeysButtonClick(object sender, RoutedEventArgs e)
+        {
+            new EnableKeysWindow().Show();
+        }
     }
 }

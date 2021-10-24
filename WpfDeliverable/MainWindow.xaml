@@ -32,6 +32,10 @@
                     Content="MessageBox"
                     Margin="10"
                     Click="MessageBoxButtonClick"/>
+                <Button x:Name="EnableKeysButton"
+                    Content="EnableKeys"
+                    Margin="10"
+                    Click="EnableKeysButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

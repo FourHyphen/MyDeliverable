@@ -21,6 +21,8 @@ namespace TestWpfDeliverable
 
         private WPFButtonBase MessageBoxButton { get; }
 
+        public WPFButtonBase EnableKeysButton { get; }
+
         public MainWindowDriver(WindowsAppFriend app)
         {
             MainWindow = app.Type("System.Windows.Application").Current.MainWindow;
@@ -29,6 +31,7 @@ namespace TestWpfDeliverable
             BindButton = new WPFButtonBase(MainWindow.BindButton);
             ImageButton = new WPFButtonBase(MainWindow.ImageButton);
             MessageBoxButton = new WPFButtonBase(MainWindow.MessageBoxButton);
+            EnableKeysButton = new WPFButtonBase(MainWindow.EnableKeysButton);
         }
 
         public string ShowMessageBox()

@@ -114,5 +114,34 @@ namespace TestWpfDeliverable
 
             Assert.AreEqual(expected: "test_message", actual: message);
         }
+
+        [TestMethod]
+        public void EnableKeys()
+        {
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            mwd.EnableKeysButton.EmulateClick();
+
+            EnableKeysWindowDriver ekwd = null;
+            try
+            {
+                ekwd = new EnableKeysWindowDriver(App);
+
+                ekwd.KeyDown(System.Windows.Input.Key.A);
+                Assert.AreEqual(expected: "Single", actual: ekwd.KeyTextBox.Text);
+
+                ekwd.KeyDown(System.Windows.Input.Key.Z, System.Windows.Input.ModifierKeys.Control);
+                Assert.AreEqual(expected: "Cancel", actual: ekwd.KeyTextBox.Text);
+
+                ekwd.KeyDown(System.Windows.Input.Key.A, System.Windows.Input.ModifierKeys.Shift);
+                Assert.AreEqual(expected: "Shift", actual: ekwd.KeyTextBox.Text);
+
+                ekwd.KeyDown(System.Windows.Input.Key.A, System.Windows.Input.ModifierKeys.Control | System.Windows.Input.ModifierKeys.Shift);
+                Assert.AreEqual(expected: "CtrlShift", actual: ekwd.KeyTextBox.Text);
+            }
+            finally
+            {
+                ekwd.CloseWindow();
+            }
+        }
     }
 }
