@@ -28,6 +28,10 @@
                     Content="Image"
                     Margin="10"
                     Click="ImageButtonClick"/>
+                <Button x:Name="MessageBoxButton"
+                    Content="MessageBox"
+                    Margin="10"
+                    Click="MessageBoxButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

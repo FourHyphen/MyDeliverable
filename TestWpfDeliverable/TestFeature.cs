@@ -105,5 +105,14 @@ namespace TestWpfDeliverable
                 iwd?.CloseWindow();
             }
         }
+
+        [TestMethod]
+        public void MessageBox()
+        {
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            string message = mwd.ShowMessageBox();
+
+            Assert.AreEqual(expected: "test_message", actual: message);
+        }
     }
 }

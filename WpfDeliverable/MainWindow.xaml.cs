@@ -29,5 +29,10 @@ namespace WpfDeliverable
         {
             new ImageWindow().Show();
         }
+
+        private void MessageBoxButtonClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("MessageBoxTest", "test_message");
+        }
     }
 }
