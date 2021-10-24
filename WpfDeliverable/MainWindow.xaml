@@ -36,6 +36,10 @@
                     Content="EnableKeys"
                     Margin="10"
                     Click="EnableKeysButtonClick"/>
+                <Button x:Name="ListViewItemButton"
+                    Content="ListViewItem"
+                    Margin="10"
+                    Click="ListViewItemButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

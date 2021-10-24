@@ -39,5 +39,10 @@ namespace WpfDeliverable
         {
             new EnableKeysWindow().Show();
         }
+
+        private void ListViewItemButtonClick(object sender, RoutedEventArgs e)
+        {
+            new ListViewItemWindow().Show();
+        }
     }
 }
