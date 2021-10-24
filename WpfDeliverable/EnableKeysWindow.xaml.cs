@@ -12,7 +12,14 @@ namespace WpfDeliverable
 
         private void WindowKeyDown(object sender, KeyEventArgs e)
         {
-            WindowKeyDown(e.Key, e.KeyboardDevice.Modifiers);
+            if (e.Key == Key.System)
+            {
+                WindowKeyDown(e.SystemKey, e.KeyboardDevice.Modifiers);
+            }
+            else
+            {
+                WindowKeyDown(e.Key, e.KeyboardDevice.Modifiers);
+            }
         }
 
         private void WindowKeyDown(Key key, ModifierKeys modifier)
