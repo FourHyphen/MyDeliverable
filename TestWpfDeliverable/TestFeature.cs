@@ -143,5 +143,19 @@ namespace TestWpfDeliverable
                 ekwd.CloseWindow();
             }
         }
+
+        [TestMethod]
+        public void ListViewItem()
+        {
+            // TODO: テスト実装
+            Assert.Inconclusive();
+        }
+
+        [TestMethod]
+        public void Music()
+        {
+            // MyUtility.Music.xaml の移植
+            Assert.Inconclusive();
+        }
     }
 }
