@@ -147,8 +147,26 @@ namespace TestWpfDeliverable
         [TestMethod]
         public void ListViewItem()
         {
-            // TODO: テスト実装
-            Assert.Inconclusive();
+            MainWindowDriver mwd = new MainWindowDriver(App);
+            mwd.ListViewItemButton.EmulateClick();
+
+            ListViewItemWindowDriver lviwd = null;
+            try
+            {
+                lviwd = new ListViewItemWindowDriver(App);
+                dynamic items = lviwd.Items;
+
+                Assert.IsTrue(items[0].Name.ToString() is string str0 && str0.Contains("0"));
+                Assert.IsTrue(items[1].Type.ToString() is string str1 && str1.Contains("1"));
+                Assert.IsTrue(items[2].Size.ToString() is string str2 && str2.Contains("2"));
+
+                string date = items[3].Date.ToString();
+                Assert.IsTrue(date.Substring(0, 8) == DateTime.Now.ToString("yyyyMMdd"));
+            }
+            finally
+            {
+                lviwd?.CloseWindow();
+            }
         }
 
         [TestMethod]

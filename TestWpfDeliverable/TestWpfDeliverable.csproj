@@ -100,6 +100,7 @@
     <Compile Include="EnableKeysWindowDriver.cs" />
     <Compile Include="ImageWindowDriver.cs" />
     <Compile Include="LabelDriver.cs" />
+    <Compile Include="ListViewItemWindowDriver.cs" />
     <Compile Include="MainWindowDriver.cs" />
     <Compile Include="TestFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
