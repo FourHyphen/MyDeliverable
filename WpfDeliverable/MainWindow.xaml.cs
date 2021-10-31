@@ -22,7 +22,7 @@ namespace WpfDeliverable
 
         private void CardsButtonClick(object sender, RoutedEventArgs e)
         {
-            new Cards().Show();
+            new CardWindow().Show();
         }
 
         private void ImageButtonClick(object sender, RoutedEventArgs e)

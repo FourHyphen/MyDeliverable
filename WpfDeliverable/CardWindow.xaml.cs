@@ -14,9 +14,9 @@ using System.Windows.Shapes;
 
 namespace WpfDeliverable
 {
-    public partial class Cards : Window
+    public partial class CardWindow : Window
     {
-        public Cards()
+        public CardWindow()
         {
             InitializeComponent();
         }

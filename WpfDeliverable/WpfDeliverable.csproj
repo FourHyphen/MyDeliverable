@@ -61,7 +61,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cards.xaml">
+    <Page Include="CardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,8 +89,8 @@
       <DependentUpon>Bind.xaml</DependentUpon>
     </Compile>
     <Compile Include="BindData.cs" />
-    <Compile Include="Cards.xaml.cs">
-      <DependentUpon>Cards.xaml</DependentUpon>
+    <Compile Include="CardWindow.xaml.cs">
+      <DependentUpon>CardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EnableKey.cs" />
     <Compile Include="EnableKeysWindow.xaml.cs">

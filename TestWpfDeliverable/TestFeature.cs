@@ -168,5 +168,11 @@ namespace TestWpfDeliverable
                 lviwd?.CloseWindow();
             }
         }
+
+        [TestMethod]
+        public void Card()
+        {
+            Assert.Inconclusive();
+        }
     }
 }
