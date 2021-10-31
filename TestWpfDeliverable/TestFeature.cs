@@ -168,12 +168,5 @@ namespace TestWpfDeliverable
                 lviwd?.CloseWindow();
             }
         }
-
-        [TestMethod]
-        public void Music()
-        {
-            // MyUtility.Music.xaml の移植
-            Assert.Inconclusive();
-        }
     }
 }
