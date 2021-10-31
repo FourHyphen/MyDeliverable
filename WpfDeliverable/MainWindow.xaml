@@ -40,6 +40,10 @@
                     Content="ListViewItem"
                     Margin="10"
                     Click="ListViewItemButtonClick"/>
+                <Button x:Name="MusicButton"
+                    Content="Music"
+                    Margin="10"
+                    Click="MusicButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

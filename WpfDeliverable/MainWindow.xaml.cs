@@ -44,5 +44,10 @@ namespace WpfDeliverable
         {
             new ListViewItemWindow().Show();
         }
+
+        private void MusicButtonClick(object sender, RoutedEventArgs e)
+        {
+            new MusicWindow().Show();
+        }
     }
 }
